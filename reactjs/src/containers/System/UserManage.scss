@@ -1,0 +1,135 @@
+.users-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    .title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .users-table {
+        overflow-x: auto;
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fafafa;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+            th, td {
+                padding: 12px 16px;
+                text-align: left;
+            }
+
+            th {
+                background: #007bff;
+                color: #fff;
+                font-weight: bold;
+            }
+
+            td {
+                border-bottom: 1px solid #ddd;
+            }
+
+            tr {
+                &:hover {
+                    background: rgba(0, 123, 255, 0.1);
+                }
+            }
+        }
+    }
+
+    button {
+        border: none;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        font-size: 14px;
+
+        &.btn-edit {
+            background: #28a745;
+            color: #fff;
+            margin-right: 5px;
+
+            &:hover {
+                background: darken(#28a745, 10%);
+            }
+        }
+
+        &.btn-delete {
+            background: #dc3545;
+            color: #fff;
+
+            &:hover {
+                background: darken(#dc3545, 10%);
+            }
+        }
+    }
+}
+.modal-user-container {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    .modal-header {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: white;
+        font-weight: bold;
+        border-bottom: none;
+        padding: 15px;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .modal-footer {
+        border-top: none;
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        background-color: #f8f9fa;
+    }
+
+    .modal-user-body {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 20px;
+
+        .input-container {
+            flex: 1 1 45%;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease-in-out;
+            
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #333;
+            }
+
+            input {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                transition: 0.3s;
+                
+                &:focus {
+                    outline: none;
+                    border-color: #007bff;
+                    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+                }
+            }
+        }
+    }
+}
