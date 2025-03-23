@@ -1,7 +1,15 @@
+
 .home-header-container {
     height: 60px;
     width: 100%;
     padding: 0 40px;
+    position: fixed;  /* Giữ header cố định */
+    top: 0;           /* Cố định ở đầu trang */
+    left: 0;
+    background-color: white; /* Đảm bảo header không bị trong suốt */
+    z-index: 1000;    /* Giữ header luôn ở trên các phần tử khác */
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+
 
     .home-header-content {
         width: 100%;
@@ -107,7 +115,7 @@
     background-position: center;
     display: flex;
     flex-direction: column;
-
+    margin-top: 60px; /* Tránh bị che bởi header */
     .content-up {
         background-image: linear-gradient(
             rgba(126, 126, 126, 0.25),
@@ -159,6 +167,7 @@
 
     .content-down {
         height: 35%;
+        padding-bottom: 10px;
         display: flex;
         align-items: flex-end;
         justify-content: center;
