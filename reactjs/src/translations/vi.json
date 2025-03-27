@@ -51,5 +51,9 @@
         "image": "Ảnh đại diện",
         "edit": "Thay đổi user"
 
+    },
+    "homepage": {
+        "outstanding-doctor": "Bác sỹ nỗi bật tuần qua",
+        "more-infor": "Xem thêm"
     }
 } 
