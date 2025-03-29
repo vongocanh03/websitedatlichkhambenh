@@ -44,13 +44,19 @@
     }
     
     .schedule-doctor {
-        margin-top: 30px;
-        background: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin: 0 100px;
+        display: flex;
+        height: 200px;
+        border: 1px solid red;
     }
     
+    .content-left {
+        width: 50%;
+    }
+    
+    .content-right {
+        width: 50%;
+    }
     .detail-infor-doctor {
         margin-top: 30px;
         background: #ffffff;
