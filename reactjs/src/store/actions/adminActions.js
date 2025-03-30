@@ -1,6 +1,8 @@
 import actionTypes from './actionTypes';
-import { getAllCodeService, createNewUserService, getAllUsers, deleteUserService, 
-    editUserService, getTopDoctorHomeService, getAllDoctor,saveDetailDoctorService } from "../../services/userService"
+import {
+    getAllCodeService, createNewUserService, getAllUsers, deleteUserService,
+    editUserService, getTopDoctorHomeService, getAllDoctor, saveDetailDoctorService
+} from "../../services/userService"
 import { toast } from 'react-toastify';
 // export const fetchGenderStart = () => ({
 //     type: actionTypes.FETCH_GENDER_START
@@ -96,10 +98,10 @@ export const createNewUser = (data) => {
 }
 export const saveUserSuccess = () => ({
     type: actionTypes.CREATE_USER_SUCCESS
-}) 
+})
 export const saveUserFailed = () => ({
     type: actionTypes.CREATE_USER_FAILDED
-}) 
+})
 
 export const fetchAllUsersStart = () => {
     return async (dispatch, getState) => {
@@ -234,7 +236,7 @@ export const saveDetailDoctor = (data) => {
                 toast.success("Save infor detail doctoer succeed!");
                 dispatch({
                     type: actionTypes.SAVE_DETAIL_DOCTORS_SUCCESS,
-                 
+
                 })
             } else {
                 toast.error("Save infor detail doctoer error!");
@@ -275,3 +277,38 @@ export const fetchAllScheduleTime = () => {
         }
     }
 }
+export const getRequiredDoctorInfor = () => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch({ type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_START })
+
+            let resPrice = await getAllCodeService("PRICE");
+            let resPayment = await getAllCodeService("PAYMENT");
+            let resProvince = await getAllCodeService("PROVINCE");
+
+            if (resPrice && resPrice.errCode === 0
+                && resPayment && resPayment.errCode === 0
+                && resProvince && resProvince.errCode === 0) {
+                let data = {
+                    resPrice: resPrice.data,
+                    resPayment: resPayment.data,
+                    resProvince: resProvince.data
+                }
+                dispatch(fetchRequiredDoctorInforSuccess(data))
+            } else {
+                dispatch(fetchRequiredDoctorInforFailed());
+            }
+        } catch (e) {
+            dispatch(fetchRequiredDoctorInforFailed());
+            console.log('fetchGenderStart error', e)
+        }
+    }
+}
+export const fetchRequiredDoctorInforSuccess = (allRequiredData) => ({
+    type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_SUCCESS,
+    data: allRequiredData
+})
+
+export const fetchRequiredDoctorInforFailed = () => ({
+    type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAIDED
+})
