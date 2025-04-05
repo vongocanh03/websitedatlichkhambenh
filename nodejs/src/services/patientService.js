@@ -5,7 +5,9 @@ import emailService from './emailService';
 let postBookAppointment = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!data.email || !data.doctorId || !data.timeType || !data.date) {
+            if (!data.email || !data.doctorId || !data.timeType || !data.date
+                || !data.fullName   
+            ) {
                 resolve({
                     errCode: 1,
                     errMessage: 'Missing parameter'
@@ -13,9 +15,10 @@ let postBookAppointment = (data) => {
             } else {
                 await emailService.sendSimpleEmail({
                     reciverEmail: data.email,
-                    patientName: 'Võ Ngọc Anh patient name',
-                    time: '8:00 - 9:00 Chủ nhật 06/04/2025',
-                    doctorName: "VNA",
+                    patientName: data.fullName,
+                    time: data.timeString,
+                    doctorName: data.doctorName,
+                    language: data.language,
                     redirectLink: 'https://www.facebook.com/profile.php?id=100022548919558'
                   })
                 // upsert patient
