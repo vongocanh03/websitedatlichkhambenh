@@ -34,8 +34,12 @@
         justify-content: space-between;
         gap: 20px;
         
-        .content-left, .content-right {
+        .content-left {
             flex: 1;
+            width: 35%;
+        }
+        .content-right{
+            width: 65%;
         }
 
         label {
