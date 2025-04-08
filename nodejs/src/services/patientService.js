@@ -11,7 +11,8 @@ let postBookAppointment = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
             if (!data.email || !data.doctorId || !data.timeType || !data.date
-                || !data.fullName   
+                || !data.fullName || !data.selectedGender
+                || !data.address
             ) {
                 resolve({
                     errCode: 1,
@@ -26,13 +27,16 @@ let postBookAppointment = (data) => {
                     doctorName: data.doctorName,
                     language: data.language,
                     redirectLink: buildUrlEmail(data.doctorId, token)
-                  })
+                })
                 // upsert patient
                 let user = await db.User.findOrCreate({
                     where: { email: data.email },
                     defaults: {
                         email: data.email,
-                        roleId: 'R3'
+                        roleId: 'R3',
+                        gender: data.selectedGender,
+                        address: data.address,
+                        firstName: data.fullName
                     },
                 });
                 // create a booking record
@@ -45,7 +49,7 @@ let postBookAppointment = (data) => {
                             patientId: user[0].id,
                             date: data.date,
                             timeType: data.timeType,
-                            token:token
+                            token: token
                         }
                     })
                 }
@@ -79,7 +83,7 @@ let postVerifyBookAppointment = (data) => {
                 if (appointment) {
                     appointment.statusId = 'S2';
                     await appointment.save();
-                
+
                     resolve({
                         errCode: 0,
                         errMessage: "Update the appointment succeed!"
@@ -99,6 +103,6 @@ let postVerifyBookAppointment = (data) => {
 }
 module.exports = {
     postBookAppointment: postBookAppointment,
-    postVerifyBookAppointment:postVerifyBookAppointment
+    postVerifyBookAppointment: postVerifyBookAppointment
 
 }

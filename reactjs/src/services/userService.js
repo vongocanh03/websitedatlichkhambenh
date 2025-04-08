@@ -20,7 +20,7 @@ const deleteUserService = (userId) => {
     });
 }
 const editUserService = (inputData) => {
-    return axios.put('/api/edit-user',inputData);
+    return axios.put('/api/edit-user', inputData);
 }
 const getAllCodeService = (inputType) => {
     return axios.get(`/api/allcode?type=${inputType}`)
@@ -33,9 +33,9 @@ const getAllDoctor = () => {
 }
 
 const saveDetailDoctorService = (data) => {
-    return axios.post(`/api/save-infor-doctors`,data)
+    return axios.post(`/api/save-infor-doctors`, data)
 }
-const getDetailInforDoctor = ( inputId ) => {
+const getDetailInforDoctor = (inputId) => {
     return axios.get(`/api/get-detail-doctor-by-id?id=${inputId}`)
 }
 const saveBulkScheduleDoctor = (data) => {
@@ -70,17 +70,20 @@ const createNewClinic = (data) => {
 }
 const getAllClinic = () => {
     return axios.get('/api/get-clinic')
-  }
-  const getAllDetailClinicById = (data) => {
+}
+const getAllDetailClinicById = (data) => {
     return axios.get(`/api/get-detail-clinic-by-id?id=${data.id}`)
-  }
+}
+const getAllPatientForDoctor = (data) => {
+    return axios.get(`/api/get-list-patient-for-doctor?doctorId=${data.doctorId}&date=${data.date}`)
+}
 export {
     handleLoginApi, getAllUsers,
     createNewUserService, deleteUserService,
-    editUserService, getAllCodeService, getTopDoctorHomeService, 
-    getAllDoctor,saveDetailDoctorService,getDetailInforDoctor,
-    saveBulkScheduleDoctor,getScheduleDoctorByDate,getExtraInforDoctorById,
-    getProfileDoctorById,postPatientBookAppointment,postVerifyBookAppointment,
-    createNewSpecialty,getAllSpecialty,getAllDetailSpecialtyById,createNewClinic,
-    getAllClinic,getAllDetailClinicById
+    editUserService, getAllCodeService, getTopDoctorHomeService,
+    getAllDoctor, saveDetailDoctorService, getDetailInforDoctor,
+    saveBulkScheduleDoctor, getScheduleDoctorByDate, getExtraInforDoctorById,
+    getProfileDoctorById, postPatientBookAppointment, postVerifyBookAppointment,
+    createNewSpecialty, getAllSpecialty, getAllDetailSpecialtyById, createNewClinic,
+    getAllClinic, getAllDetailClinicById, getAllPatientForDoctor
 }
